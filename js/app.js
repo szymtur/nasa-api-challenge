@@ -40,7 +40,7 @@ $(document).ready(function () {
     
     
     //NASA API - Mars Rover Photos
-    const marsUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&total_photos=105&camera=navcam&api_key=4OuIkgBXY1vgQKu01D3GkOy2XJYJQt5o7dwLA6di"
+    const marsUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1250&total_photos=105&camera=navcam&api_key=4OuIkgBXY1vgQKu01D3GkOy2XJYJQt5o7dwLA6di"
 
     $.ajax({
         url: marsUrl,

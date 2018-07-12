@@ -72,10 +72,13 @@ body{
 
 .gallery .photo {
     width: 350px;
-    height: 350px;
-    border-radius: 10px;
+    height: 250px;
+    border-radius: 6px;
     border: 1px solid black;
     margin: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .button {
