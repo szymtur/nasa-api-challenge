@@ -1,4 +1,16 @@
 $(document).ready(function () {
+    
+    //Replace 'http://' to 'https://'
+    function changeUrl(url) {
+        if(url.indexOf('https://') == -1){
+            let newUrl = url.replace('http://', 'https://');
+            return newUrl;
+        }
+        else{
+            return url;
+        }
+    }
+    
 
     //NASA API - Astronomy Picture of the Day
     const apodUrl = "https://api.nasa.gov/planetary/apod?start_date=2018-07-01&end_date=2018-07-11&api_key=4OuIkgBXY1vgQKu01D3GkOy2XJYJQt5o7dwLA6di"
@@ -10,7 +22,7 @@ $(document).ready(function () {
             
             const randomNumber = Math.floor(Math.random() * (result.length));
             const introFigure = $('.intro').find('#intro-photo');
-            let randomBackgroundUrl = result[randomNumber].url;
+            let randomBackgroundUrl = changeUrl(result[randomNumber].url);
 
             if (result[randomNumber].media_type == "video") {
                 introFigure.html('<h1>please reload...</h1>');
@@ -25,8 +37,8 @@ $(document).ready(function () {
             console.log('apod connecting ' + error.statusText);
         }
     });
-
-
+    
+    
     //NASA API - Mars Rover Photos
     const marsUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&total_photos=105&camera=navcam&api_key=4OuIkgBXY1vgQKu01D3GkOy2XJYJQt5o7dwLA6di"
 
@@ -39,16 +51,8 @@ $(document).ready(function () {
             const galleryFigures = $('.gallery').find('.photo');
             
             for (let i = 0; i < galleryFigures.length; i++) {
-                
-                let photoUrl = photos[i].img_src;
-                
-                if(photoUrl.indexOf('https://') == -1){
-                    let newPhotoUrl = photoUrl.replace('http://', 'https://');
-                    $(galleryFigures[i]).css('background-image', `url(${newPhotoUrl})`);
-                }
-                else{
-                    $(galleryFigures[i]).css('background-image', `url(${photoUrl})`);
-                }
+                let photoUrl = changeUrl(photos[i].img_src);
+                $(galleryFigures[i]).css('background-image', `url(${photoUrl})`);
             }
 
             const button = $('.button');
@@ -56,14 +60,18 @@ $(document).ready(function () {
 
             button.on('click', function () {
                 for (let i = counter; i < counter + 6; i++) {
+                    
                     if(i < photos.length - 1){
+                        
+                        let photoUrl = changeUrl(photos[i].img_src);
                         let newGalleryFigure = $('<figure class="photo"></figure>');
-                            newGalleryFigure.css('background-image', `url('${photos[i].img_src}')`);
+                            newGalleryFigure.css('background-image', `url('${photoUrl}')`);
                         $('.gallery').append(newGalleryFigure); 
                     }
                     else {
                         $(this).css('display', 'none');
                         console.log("end of gallery");
+                        break;
                     }
                 }
                 counter += 6;
