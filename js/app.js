@@ -22,12 +22,13 @@ $(document).ready(function () {
             
             const randomNumber = Math.floor(Math.random() * (result.length));
             const introFigure = $('.intro').find('#intro-photo');
-            let randomBackgroundUrl = changeUrl(result[randomNumber].url);
-
+			let randomBackgroundUrl = changeUrl(result[randomNumber].url);
+			
             if (result[randomNumber].media_type == "video") {
                 introFigure.html('<h1>please reload...</h1>');
-            } else {
-                introFigure.css('background-image', `url('${randomBackgroundUrl}')`);
+			}
+			else {
+                introFigure.css('background-image', 'url(' + randomBackgroundUrl + ')');
                 introFigure.css('background-position', 'center');
                 introFigure.css('background-repeat', 'no-repeat');
                 introFigure.css('background-size', 'cover');
@@ -52,7 +53,7 @@ $(document).ready(function () {
             
             for (let i = 0; i < galleryFigures.length; i++) {
                 let photoUrl = changeUrl(photos[i].img_src);
-                $(galleryFigures[i]).css('background-image', `url(${photoUrl})`);
+                $(galleryFigures[i]).css('background-image', 'url(' + photoUrl + ')');
             }
 
             const button = $('.button');
@@ -65,7 +66,7 @@ $(document).ready(function () {
                         
                         let photoUrl = changeUrl(photos[i].img_src);
                         let newGalleryFigure = $('<figure class="photo"></figure>');
-                            newGalleryFigure.css('background-image', `url('${photoUrl}')`);
+                            newGalleryFigure.css('background-image', 'url(' + photoUrl + ')');
                         $('.gallery').append(newGalleryFigure); 
                     }
                     else {
